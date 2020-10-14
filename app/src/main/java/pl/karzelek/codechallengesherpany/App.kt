@@ -7,7 +7,7 @@ import pl.karzelek.codechallengesherpany.di.DaggerMainComponent
 import pl.karzelek.codechallengesherpany.di.MainComponent
 
 class App : Application() {
-    val mainComponent: MainComponent = DaggerMainComponent.create()
+    val mainComponent: MainComponent = DaggerMainComponent.factory().create(this)
 }
 
 fun Activity.mainComponent(): MainComponent = (application as App).mainComponent
