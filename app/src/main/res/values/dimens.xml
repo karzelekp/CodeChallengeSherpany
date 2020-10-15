@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="posts_width">150dp</dimen>
+    <dimen name="post_title_vertical_padding">4dp</dimen>
+</resources>
