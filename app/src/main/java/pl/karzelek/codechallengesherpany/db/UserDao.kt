@@ -5,13 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import pl.karzelek.codechallengesherpany.entities.Post
+import pl.karzelek.codechallengesherpany.entities.User
 
 @Dao
-interface PostDao {
-    @Query("SELECT * FROM posts")
-    fun getAll(): LiveData<List<Post>>
+interface UserDao {
+    @Query("SELECT * FROM users")
+    fun getAll(): LiveData<List<User>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(posts: Collection<Post>)
+    fun insertAll(users: Collection<User>)
 }

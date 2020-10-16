@@ -5,13 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import pl.karzelek.codechallengesherpany.entities.Post
+import pl.karzelek.codechallengesherpany.entities.Photo
 
 @Dao
-interface PostDao {
-    @Query("SELECT * FROM posts")
-    fun getAll(): LiveData<List<Post>>
+interface PhotoDao {
+    @Query("SELECT * FROM photos")
+    fun getAll(): LiveData<List<Photo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(posts: Collection<Post>)
+    fun insertAll(posts: Collection<Photo>)
 }

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="post"
-            type="pl.karzelek.codechallengesherpany.api.Post" />
+            type="pl.karzelek.codechallengesherpany.entities.Post" />
     </data>
 
     <TextView

@@ -1,6 +1,10 @@
 package pl.karzelek.codechallengesherpany.api
 
 import io.reactivex.rxjava3.core.Observable
+import pl.karzelek.codechallengesherpany.entities.Album
+import pl.karzelek.codechallengesherpany.entities.Photo
+import pl.karzelek.codechallengesherpany.entities.Post
+import pl.karzelek.codechallengesherpany.entities.User
 import retrofit2.adapter.rxjava3.Result
 import retrofit2.http.GET
 
