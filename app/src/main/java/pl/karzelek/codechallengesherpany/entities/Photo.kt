@@ -2,10 +2,22 @@ package pl.karzelek.codechallengesherpany.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "photos")
+@ForeignKey(entity = Album::class, parentColumns = ["id"], childColumns = ["album_id"], onDelete = ForeignKey.CASCADE)
+@Entity(
+    tableName = "photos",
+    foreignKeys = [
+        ForeignKey(
+            entity = Album::class,
+            parentColumns = ["id"],
+            childColumns = ["album_id"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class Photo(
     @PrimaryKey
     @ColumnInfo(name = "id")

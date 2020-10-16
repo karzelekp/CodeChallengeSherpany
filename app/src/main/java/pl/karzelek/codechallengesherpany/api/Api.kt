@@ -1,23 +1,21 @@
 package pl.karzelek.codechallengesherpany.api
 
-import io.reactivex.rxjava3.core.Observable
 import pl.karzelek.codechallengesherpany.entities.Album
 import pl.karzelek.codechallengesherpany.entities.Photo
 import pl.karzelek.codechallengesherpany.entities.Post
 import pl.karzelek.codechallengesherpany.entities.User
-import retrofit2.adapter.rxjava3.Result
 import retrofit2.http.GET
 
 interface Api {
     @GET("posts")
-    fun posts(): Observable<Result<List<Post>>>
+    suspend fun suspendPosts(): List<Post>
 
     @GET("users")
-    fun users(): Observable<Result<List<User>>>
+    suspend fun suspendUsers(): List<User>
 
     @GET("albums")
-    fun albums(): Observable<Result<List<Album>>>
+    suspend fun suspendAlbums(): List<Album>
 
     @GET("photos")
-    fun photos(): Observable<Result<List<Photo>>>
+    suspend fun suspendPhotos(): List<Photo>
 }

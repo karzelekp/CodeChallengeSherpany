@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import pl.karzelek.codechallengesherpany.api.Post
 import pl.karzelek.codechallengesherpany.databinding.PostRowBinding
+import pl.karzelek.codechallengesherpany.entities.Post
 
 class PostsAdapter(private val context: Context) : RecyclerView.Adapter<PostsAdapter.Holder>() {
 
