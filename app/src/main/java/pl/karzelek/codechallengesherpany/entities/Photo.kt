@@ -1,9 +1,6 @@
 package pl.karzelek.codechallengesherpany.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 @ForeignKey(entity = Album::class, parentColumns = ["id"], childColumns = ["album_id"], onDelete = ForeignKey.CASCADE)
@@ -16,6 +13,9 @@ import com.google.gson.annotations.SerializedName
             childColumns = ["album_id"],
             onDelete = ForeignKey.CASCADE
         )
+    ],
+    indices = [
+        Index("album_id")
     ]
 )
 data class Photo(

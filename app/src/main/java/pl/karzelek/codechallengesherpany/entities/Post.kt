@@ -1,9 +1,6 @@
 package pl.karzelek.codechallengesherpany.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 @Entity(
@@ -15,6 +12,9 @@ import com.google.gson.annotations.SerializedName
             childColumns = ["user_id"],
             onDelete = ForeignKey.CASCADE
         )
+    ],
+    indices = [
+        Index("user_id")
     ]
 )
 data class Post(

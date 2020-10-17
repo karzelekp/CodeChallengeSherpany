@@ -15,6 +15,9 @@ import com.google.gson.annotations.SerializedName
             childColumns = ["user_id"],
             onDelete = ForeignKey.CASCADE
         )
+    ],
+    indices = [
+        androidx.room.Index("user_id")
     ]
 )
 data class Album(
