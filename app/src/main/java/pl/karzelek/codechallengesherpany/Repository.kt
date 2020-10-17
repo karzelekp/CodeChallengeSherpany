@@ -19,7 +19,7 @@ class Repository @Inject constructor(
     private val database: ChallengeDatabase
 ) {
 
-    private val coroutineExceptionHanlder = CoroutineExceptionHandler { _, throwable ->
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
             is UnknownHostException -> {
                 Log.d(TAG, "network error")
@@ -40,7 +40,7 @@ class Repository @Inject constructor(
     }
 
     private fun fetchData() {
-        CoroutineScope(Dispatchers.IO + coroutineExceptionHanlder).launch {
+        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
             val users = async { api.suspendUsers() }
             val posts = async { api.suspendPosts() }
             val albums = async { api.suspendAlbums() }
