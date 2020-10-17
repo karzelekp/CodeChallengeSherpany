@@ -12,5 +12,9 @@ class PostsDiffCallback(private val oldList: List<PostWithUser>, private val new
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
         oldList[oldItemPosition].post.id == newList[newItemPosition].post.id
 
+    /**
+     * works as areItemsTheSame in this implementation
+     * this implementation assumes the source of the data never changes and the same id means the same content
+     */
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) = areItemsTheSame(oldItemPosition, newItemPosition)
 }
