@@ -25,11 +25,11 @@ class Repository @Inject constructor(
                 Log.d(TAG, "network error")
             }
             is SQLiteException -> {
-                Log.d(TAG, "database error")
+                Log.e(TAG, "database error")
                 throwable.printStackTrace()
             }
             else -> {
-                Log.d(TAG, "unknown error")
+                Log.e(TAG, "unknown error")
                 throwable.printStackTrace()
             }
         }

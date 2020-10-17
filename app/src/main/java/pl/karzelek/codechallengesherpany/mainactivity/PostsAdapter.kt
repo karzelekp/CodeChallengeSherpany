@@ -3,6 +3,7 @@ package pl.karzelek.codechallengesherpany.mainactivity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import pl.karzelek.codechallengesherpany.databinding.PostRowBinding
 import pl.karzelek.codechallengesherpany.db.PostWithUser
@@ -14,8 +15,10 @@ class PostsAdapter(
 
     var list = emptyList<PostWithUser>()
         set(value) {
+            val postsDiffCallback = PostsDiffCallback(field, value)
             field = value
-            notifyDataSetChanged()
+            val calculateDiff = DiffUtil.calculateDiff(postsDiffCallback)
+            calculateDiff.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = Holder(
