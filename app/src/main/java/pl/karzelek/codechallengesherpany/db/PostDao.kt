@@ -12,6 +12,9 @@ interface PostDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(posts: Collection<Post>)
 
+    @Delete
+    suspend fun delete(post: Post)
+
     @Query("SELECT * FROM posts")
     @Transaction
     fun getAllPostsWithUsers(): LiveData<List<PostWithUser>>

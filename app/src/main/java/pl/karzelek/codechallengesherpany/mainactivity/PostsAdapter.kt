@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.karzelek.codechallengesherpany.databinding.PostRowBinding
 import pl.karzelek.codechallengesherpany.db.PostWithUser
 
-class PostsAdapter(private val context: Context) : RecyclerView.Adapter<PostsAdapter.Holder>() {
+class PostsAdapter(
+    private val context: Context,
+    private val viewModel: MainViewModel
+) : RecyclerView.Adapter<PostsAdapter.Holder>() {
 
     var list = emptyList<PostWithUser>()
         set(value) {
@@ -24,14 +27,15 @@ class PostsAdapter(private val context: Context) : RecyclerView.Adapter<PostsAda
     )
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position], viewModel)
     }
 
     override fun getItemCount() = list.size
 
     class Holder(private val binding: PostRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(postWithUser: PostWithUser) {
+        fun bind(postWithUser: PostWithUser, viewModel: MainViewModel) {
             binding.postWithUser = postWithUser
+            binding.viewModel = viewModel
             binding.executePendingBindings()
         }
     }

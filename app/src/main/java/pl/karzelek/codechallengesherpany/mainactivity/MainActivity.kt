@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by lazy { ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java) }
-    private val adapter by lazy { PostsAdapter(this) }
+    private val adapter by lazy { PostsAdapter(this, viewModel) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
