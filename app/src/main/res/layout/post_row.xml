@@ -2,16 +2,30 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
-            name="post"
-            type="pl.karzelek.codechallengesherpany.entities.Post" />
+            name="postWithUser"
+            type="pl.karzelek.codechallengesherpany.db.PostWithUser" />
     </data>
 
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/post_title_vertical_padding"
-        android:text="@{post.title}" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/post_title_vertical_padding"
+            android:text="@{postWithUser.post.title}" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/post_title_vertical_padding"
+            android:text="@{postWithUser.user.email}" />
+    </LinearLayout>
 
 </layout>

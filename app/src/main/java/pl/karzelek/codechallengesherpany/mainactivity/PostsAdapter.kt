@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import pl.karzelek.codechallengesherpany.databinding.PostRowBinding
-import pl.karzelek.codechallengesherpany.entities.Post
+import pl.karzelek.codechallengesherpany.db.PostWithUser
 
 class PostsAdapter(private val context: Context) : RecyclerView.Adapter<PostsAdapter.Holder>() {
 
-    var list = emptyList<Post>()
+    var list = emptyList<PostWithUser>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -30,8 +30,8 @@ class PostsAdapter(private val context: Context) : RecyclerView.Adapter<PostsAda
     override fun getItemCount() = list.size
 
     class Holder(private val binding: PostRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(post: Post) {
-            binding.post = post
+        fun bind(postWithUser: PostWithUser) {
+            binding.postWithUser = postWithUser
             binding.executePendingBindings()
         }
     }

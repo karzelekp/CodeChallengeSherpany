@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(database: ChallengeDatabase) : ViewModel() {
 
-    val posts = database.postDao().getAll()
+    val postsWithUsers = database.postDao().getAllPostsWithUsers()
 }

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainComponent().inject(this)
 
-        viewModel.posts.observe(this, {
+        viewModel.postsWithUsers.observe(this, {
             adapter.list = it
         })
 

@@ -1,10 +1,7 @@
 package pl.karzelek.codechallengesherpany.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import pl.karzelek.codechallengesherpany.entities.Post
 
 @Dao
@@ -14,4 +11,8 @@ interface PostDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(posts: Collection<Post>)
+
+    @Query("SELECT * FROM posts")
+    @Transaction
+    fun getAllPostsWithUsers(): LiveData<List<PostWithUser>>
 }
