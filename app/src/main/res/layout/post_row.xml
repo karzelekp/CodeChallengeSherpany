@@ -17,8 +17,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/transparent_selectable_background"
         android:onClick="@{() -> viewModel.onPostSelected(postWithUser)}"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp">
 
         <TextView
             android:id="@+id/title"

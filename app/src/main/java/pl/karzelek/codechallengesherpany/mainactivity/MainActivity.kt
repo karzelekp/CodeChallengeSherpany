@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.karzelek.codechallengesherpany.R
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setTitle(R.string.challenge_accepted)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = adapter
+        recycler_view.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         supportFragmentManager.commit {
             replace(R.id.fragment_container, DetailViewFragment(), DetailViewFragment.TAG)
