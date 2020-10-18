@@ -2,4 +2,5 @@
     <string name="app_name">Code Challenge Sherpany</string>
     <string name="challenge_accepted">Challenge Accepted!</string>
     <string name="delete_button_description">delete button</string>
+    <string name="photo_description">photo in the album</string>
 </resources>

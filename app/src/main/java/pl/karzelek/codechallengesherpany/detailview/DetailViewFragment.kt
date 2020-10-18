@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.detail_fragment.*
+import pl.karzelek.codechallengesherpany.R
 import pl.karzelek.codechallengesherpany.databinding.DetailFragmentBinding
 import pl.karzelek.codechallengesherpany.db.AlbumWithPhotos
 import pl.karzelek.codechallengesherpany.di.ViewModelFactory
@@ -21,6 +22,7 @@ class DetailViewFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by lazy { ViewModelProvider(requireActivity(), viewModelFactory).get(MainViewModel::class.java) }
+    private val photoColumns by lazy { resources.getInteger(R.integer.photo_columns) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +46,11 @@ class DetailViewFragment : Fragment() {
     private fun setAdapter(photos: List<AlbumWithPhotos>) {
         val adapter = AlbumsAdapter(requireContext(), photos)
         albums.adapter = adapter
-        albums.layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT).apply {
+        albums.layoutManager = GridLayoutManager(requireContext(), photoColumns).apply {
             spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return if (adapter.isHeader(position)) {
-                        SPAN_COUNT
+                        photoColumns
                     } else {
                         1
                     }
@@ -59,6 +61,5 @@ class DetailViewFragment : Fragment() {
 
     companion object {
         const val TAG = "DetailViewFragment"
-        const val SPAN_COUNT = 3
     }
 }
