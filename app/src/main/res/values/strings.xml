@@ -3,4 +3,7 @@
     <string name="challenge_accepted">Challenge Accepted!</string>
     <string name="delete_button_description">delete button</string>
     <string name="photo_description">photo in the album</string>
+    <string name="database_error">unable to save data</string>
+    <string name="internet_error">unable to download content</string>
+    <string name="unknown_error">an unknown error occurred</string>
 </resources>

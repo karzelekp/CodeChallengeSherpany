@@ -3,6 +3,7 @@ package pl.karzelek.codechallengesherpany
 import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
+import pl.karzelek.codechallengesherpany.api.Repository
 import pl.karzelek.codechallengesherpany.di.DaggerMainComponent
 import pl.karzelek.codechallengesherpany.di.MainComponent
 import javax.inject.Inject
