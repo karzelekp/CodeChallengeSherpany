@@ -3,12 +3,12 @@ package pl.karzelek.codechallengesherpany.db
 import androidx.room.Embedded
 import androidx.room.Relation
 import pl.karzelek.codechallengesherpany.entities.Album
-import pl.karzelek.codechallengesherpany.entities.User
+import pl.karzelek.codechallengesherpany.entities.Photo
 
-data class UserWithAlbums(
+data class AlbumWithPhotos(
     @Embedded
-    val user: User,
+    val album: Album,
 
-    @Relation(entity = Album::class, parentColumn = "id", entityColumn = "user_id")
-    val albums: List<Album>
+    @Relation(entity = Photo::class, parentColumn = "id", entityColumn = "album_id")
+    val photos: List<Photo>
 )

@@ -35,8 +35,8 @@ class MainViewModel @Inject constructor(private val database: ChallengeDatabase)
         val userId = postWithUser.user.id
         if (userId != null) {
             getUserWithAlbumsJob = viewModelScope.launch {
-                val userWithAlbums = database.userDao().getUserWithAlbums(userId).firstOrNull()
-                _detailViewState.value = DetailViewState(false, postWithUser.post, userWithAlbums?.albums ?: emptyList())
+                val albums = database.albumDao().getAlbumsForUser(userId)
+                _detailViewState.value = DetailViewState(false, postWithUser.post, albums)
             }
         }
     }

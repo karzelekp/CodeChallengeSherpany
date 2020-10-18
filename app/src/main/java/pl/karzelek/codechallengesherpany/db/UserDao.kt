@@ -1,7 +1,10 @@
 package pl.karzelek.codechallengesherpany.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import pl.karzelek.codechallengesherpany.entities.User
 
 @Dao
@@ -11,8 +14,4 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(users: Collection<User>)
-
-    @Query("SELECT * FROM users where id = :userId")
-    @Transaction
-    suspend fun getUserWithAlbums(userId: Int): List<UserWithAlbums>
 }
