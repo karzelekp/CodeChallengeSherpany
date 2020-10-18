@@ -2,10 +2,12 @@ package pl.karzelek.codechallengesherpany.mainactivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.karzelek.codechallengesherpany.R
+import pl.karzelek.codechallengesherpany.detailview.DetailViewFragment
 import pl.karzelek.codechallengesherpany.di.ViewModelFactory
 import pl.karzelek.codechallengesherpany.mainComponent
 import javax.inject.Inject
@@ -30,5 +32,9 @@ class MainActivity : AppCompatActivity() {
         setTitle(R.string.challenge_accepted)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = adapter
+
+        supportFragmentManager.commit {
+            replace(R.id.fragment_container, DetailViewFragment(), DetailViewFragment.TAG)
+        }
     }
 }
