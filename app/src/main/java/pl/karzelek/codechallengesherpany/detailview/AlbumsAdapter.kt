@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.album_row.view.*
 import kotlinx.android.synthetic.main.photo_row.view.*
 import pl.karzelek.codechallengesherpany.R
+import pl.karzelek.codechallengesherpany.databinding.AlbumRowBinding
 import pl.karzelek.codechallengesherpany.db.AlbumWithPhotos
 import pl.karzelek.codechallengesherpany.entities.Album
 import pl.karzelek.codechallengesherpany.entities.Photo
@@ -20,10 +20,11 @@ class AlbumsAdapter(private val context: Context, list: List<AlbumWithPhotos>) :
     private val photoColumns = context.resources.getInteger(R.integer.photo_columns)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(context)
         return if (viewType == HEADER) {
-            HeaderHolder(LayoutInflater.from(context).inflate(R.layout.album_row, parent, false))
+            HeaderHolder(AlbumRowBinding.inflate(inflater, parent, false))
         } else {
-            PhotoHolder(LayoutInflater.from(context).inflate(R.layout.photo_row, parent, false).also {
+            PhotoHolder(inflater.inflate(R.layout.photo_row, parent, false).also {
                 it.layoutParams.height = parent.measuredWidth / photoColumns
             })
         }
@@ -42,7 +43,7 @@ class AlbumsAdapter(private val context: Context, list: List<AlbumWithPhotos>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = flatList[position]
         if (holder is HeaderHolder && item is Album) {
-            holder.title.text = item.title
+            holder.bind(item)
         } else if (holder is PhotoHolder && item is Photo) {
             picasso.load(item.url).into(holder.photo)
         }
@@ -50,8 +51,11 @@ class AlbumsAdapter(private val context: Context, list: List<AlbumWithPhotos>) :
 
     override fun getItemCount() = flatList.size
 
-    class HeaderHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title = view.album_title!!
+    class HeaderHolder(private val binding: AlbumRowBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(album: Album) {
+            binding.album = album
+            binding.executePendingBindings()
+        }
     }
 
     class PhotoHolder(view: View) : RecyclerView.ViewHolder(view) {
