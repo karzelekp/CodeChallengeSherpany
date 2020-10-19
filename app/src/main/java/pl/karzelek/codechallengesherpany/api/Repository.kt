@@ -7,6 +7,8 @@ import androidx.annotation.StringRes
 import kotlinx.coroutines.*
 import pl.karzelek.codechallengesherpany.R
 import pl.karzelek.codechallengesherpany.db.ChallengeDatabase
+import pl.karzelek.codechallengesherpany.di.IoDispatcher
+import pl.karzelek.codechallengesherpany.di.MainDispatcher
 import pl.karzelek.codechallengesherpany.entities.Album
 import pl.karzelek.codechallengesherpany.entities.Photo
 import pl.karzelek.codechallengesherpany.entities.Post
@@ -20,7 +22,11 @@ import javax.inject.Singleton
 class Repository @Inject constructor(
     private val api: Api,
     private val database: ChallengeDatabase,
-    private val context: Context
+    private val context: Context,
+    @IoDispatcher
+    private val ioDispatcher: CoroutineDispatcher,
+    @MainDispatcher
+    private val mainDispatcher: CoroutineDispatcher
 ) {
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -47,7 +53,7 @@ class Repository @Inject constructor(
     }
 
     private fun fetchData() {
-        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
+        CoroutineScope(ioDispatcher + coroutineExceptionHandler).launch {
             val users = async { api.suspendUsers() }
             val posts = async { api.suspendPosts() }
             val albums = async { api.suspendAlbums() }
@@ -58,7 +64,7 @@ class Repository @Inject constructor(
     }
 
     private suspend fun writeEntities(users: List<User>, posts: List<Post>, albums: List<Album>, photos: List<Photo>) =
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             database.runInTransaction {
                 database.userDao().insertAll(users)
                 database.postDao().insertAll(posts)
@@ -68,7 +74,7 @@ class Repository @Inject constructor(
         }
 
     private fun showToast(@StringRes databaseError: Int) {
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(mainDispatcher).launch {
             context.showToast(databaseError)
         }
     }

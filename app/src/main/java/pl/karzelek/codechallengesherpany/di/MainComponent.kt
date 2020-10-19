@@ -7,7 +7,7 @@ import pl.karzelek.codechallengesherpany.detailview.DetailViewFragment
 import pl.karzelek.codechallengesherpany.mainactivity.MainActivity
 import javax.inject.Singleton
 
-@Component(modules = [MainModule::class, ViewModelModule::class])
+@Component(modules = [MainModule::class, ViewModelModule::class, DispatcherModule::class])
 @Singleton
 interface MainComponent {
 
