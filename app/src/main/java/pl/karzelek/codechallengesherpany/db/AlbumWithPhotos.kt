@@ -12,3 +12,4 @@ data class AlbumWithPhotos(
     @Relation(entity = Photo::class, parentColumn = "id", entityColumn = "album_id")
     val photos: List<Photo>
 )
+    fun Iterable<AlbumWithPhotos>.flatList() = flatMap { listOf(it.album) + it.photos }

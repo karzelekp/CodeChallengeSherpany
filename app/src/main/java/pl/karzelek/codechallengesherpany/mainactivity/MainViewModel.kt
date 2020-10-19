@@ -26,14 +26,14 @@ class MainViewModel @Inject constructor(private val database: ChallengeDatabase)
         }
     }
 
-    var getUserWithAlbumsJob: Job? = null
+    private var getUserWithAlbumsJob: Job? = null
 
     fun onPostSelected(postWithUser: PostWithUser) {
         Log.d(TAG, "selected the post with id: ${postWithUser.post.id}")
         getUserWithAlbumsJob?.cancel()
-        _detailViewState.value = DetailViewState(true)
         val userId = postWithUser.user.id
         if (userId != null) {
+            _detailViewState.value = DetailViewState(true)
             getUserWithAlbumsJob = viewModelScope.launch {
                 val albums = database.albumDao().getAlbumsForUser(userId)
                 _detailViewState.value = DetailViewState(false, postWithUser.post, albums)

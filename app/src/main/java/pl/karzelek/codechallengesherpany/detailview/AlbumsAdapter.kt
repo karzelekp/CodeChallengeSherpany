@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.photo_row.view.*
 import pl.karzelek.codechallengesherpany.R
 import pl.karzelek.codechallengesherpany.databinding.AlbumRowBinding
 import pl.karzelek.codechallengesherpany.db.AlbumWithPhotos
+import pl.karzelek.codechallengesherpany.db.flatList
 import pl.karzelek.codechallengesherpany.entities.Album
 import pl.karzelek.codechallengesherpany.entities.Photo
 
 class AlbumsAdapter(private val context: Context, list: List<AlbumWithPhotos>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val flatList = list.flatMap { listOf(it.album) + it.photos }
+    private val flatList = list.flatList()
     private val picasso = Picasso.get()
     private val photoColumns = context.resources.getInteger(R.integer.photo_columns)
 
